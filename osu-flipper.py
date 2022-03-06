@@ -9,7 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtGui import QPalette, QColor
+from PyQt5.QtGui import QPalette, QColor, QKeySequence
 from PyQt5.QtCore import Qt
 import rotatescreen
 import json
@@ -95,6 +95,10 @@ class Ui_MainWindow(object):
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setObjectName("label")
         MainWindow.setCentralWidget(self.centralwidget)
+        self.shortcut_flip = QtWidgets.QShortcut(QKeySequence('Shift+;'), MainWindow)
+        self.shortcut_flip.activated.connect(self.flip_button)
+        self.shortcut_unflip = QtWidgets.QShortcut(QKeySequence("Shift+'"), MainWindow)
+        self.shortcut_unflip.activated.connect(self.unflip_button)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 787, 21))
         self.menubar.setObjectName("menubar")

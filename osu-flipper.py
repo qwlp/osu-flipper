@@ -14,6 +14,7 @@ from PyQt5.QtCore import Qt
 import rotatescreen
 import json
 import subprocess
+import keyboard
 from configparser import ConfigParser
 
 
@@ -95,10 +96,8 @@ class Ui_MainWindow(object):
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setObjectName("label")
         MainWindow.setCentralWidget(self.centralwidget)
-        self.shortcut_flip = QtWidgets.QShortcut(QKeySequence('Shift+;'), MainWindow)
-        self.shortcut_flip.activated.connect(self.flip_button)
-        self.shortcut_unflip = QtWidgets.QShortcut(QKeySequence("Shift+'"), MainWindow)
-        self.shortcut_unflip.activated.connect(self.unflip_button)
+        keyboard.add_hotkey("shift+;", self.flip_button, suppress=True)
+        keyboard.add_hotkey("shift+'", self.unflip_button, suppress=True)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 787, 21))
         self.menubar.setObjectName("menubar")
